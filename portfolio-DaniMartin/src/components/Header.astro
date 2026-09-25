@@ -1,0 +1,16 @@
+---
+import { Image } from "astro:assets";
+import fotoPerfil from "../assets/ProfilePic.png";
+---
+
+
+<header class="flex justify-between items-center py-3 w-280">
+    <Image class="rounded-full w-12 h-12" src={fotoPerfil} alt="Foto de Daniel Martín Hurtado"/>
+
+    <nav class="flex flex-row gap-x-10 opacity-80">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/projects">Projects</a>
+        <a href="/contact">Contact</a>
+    </nav>
+</header>
