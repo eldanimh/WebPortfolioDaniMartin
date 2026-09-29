@@ -2,3 +2,8 @@
 @import "flowbite/src/themes/default";
 @plugin "flowbite/plugin";
 @source "../../node_modules/flowbite";
+
+@theme {
+    --color-python-yellow: #FFD43B;
+    --color-python-blue: #3776AB;
+}

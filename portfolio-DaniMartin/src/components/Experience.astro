@@ -1,0 +1,44 @@
+---
+import ExperienceItems from "./ExperienceItems.astro";
+
+const EXPERIENCE = [
+    {
+        date: "Septiembre 2020 - Diciembre 2021",
+        title: "Restaurante Kechua",
+        description: [
+            "Redes sociales y publicidad digital",
+        ],
+    },
+    
+    {
+        date: "2017 - 2024",
+        title: "Auditorio Salem Madrid",
+        description: [
+            "Realizador de emisiones en directo con NewTek Tricaster",
+            "Gestión de cámaras manuales y PTZ",
+        ],
+    },
+
+    {
+        date: "Diciembre 2021",
+        title: "Restaurante Chincha Internacional",
+        description: [
+            "Diseño y puesta en marcha de la web con sistema de reservas online",
+            "Posicionamiento local en Google Maps y Apple Maps",
+            "Gestión de redes sociales y campañas (Meta Ads, YouTube Ads)",
+        ],
+        link: "https://www.restaurantechincha.com",
+        current: true,
+    },
+];
+---
+
+<ol class="sm:flex sm:items-start">
+    {
+        EXPERIENCE.map((experience) => (
+            <li class="relative mb-6 sm:mb-0 sm:flex-1">
+                <ExperienceItems {...experience} />
+            </li>
+        ))
+    }
+</ol>

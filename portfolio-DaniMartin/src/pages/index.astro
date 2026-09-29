@@ -1,30 +1,76 @@
 ---
-import Badge from '../components/Badge.astro';
-import Layout from '../layouts/Layout.astro';
+import Badge from "../components/Badge.astro";
+import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import fotoPerfil from "../assets/ProfilePic.png";
+import LinkedIn from "../icons/LinkedIn.astro";
+import SocialPill from "../components/SocialPill.astro";
+import GitHub from "../icons/GitHub.astro";
+import MailLogo from "../icons/MailLogo.astro";
+import Experience from "../components/Experience.astro";
+import SectionContainer from "../components/SectionContainer.astro"
+import Maletin from "../icons/maletin.astro";
 ---
 
-<Layout>
+<Layout
+	title="Daniel Martín Hurtado | Portfolio"
+	description="Estudiante de Ingeniería de Telecomunicaciones con un gran interés en el ámbito tecnológico. Apasionado por la Programación, especialmente por Python, y por la Arquitectura de Internet."
+>
 	<main>
-		<section class="w-full mx-auto lg:w-185 py-44">
-			<Image class="rounded-full w-32 h-32 mb-4" src={fotoPerfil} alt="Foto de Daniel Martín Hurtado"/>
+		<SectionContainer class="py-44 pb-24">
+			<Image
+				class="rounded-full w-32 h-32 mb-4"
+				src={fotoPerfil}
+				alt="Foto de Daniel Martín Hurtado"
+			/>
 			<div class="flex items-center gap-3 pb-10">
-				
 				<h1 class="text-white text-5xl font-bold">
-					¡Hola!, soy Daniel Martín
+					¡Hola!, soy Daniel Martín Hurtado
 				</h1>
-				<a href="https://www.linkedin.com/in/daniel-martin-hurtado/" target="_blank" rel="noopener">
+				<a
+					href="https://www.linkedin.com/in/daniel-martin-hurtado/"
+					target="_blank"
+					rel="noopener"
+				>
 					<Badge>#OpenToWork</Badge>
 				</a>
 			</div>
-			<h2 class="text-2xl opacity-80 text-wrap">
-				Estudiante de <span class="font-bold">Ingeniería de Telecomuniaciones</span> con un
-				gran interés en el ámbito tecnológico. Apasionado por la Programación,
-				especialmente por <span class="font-bold">Python</span>, y por la <span class="font-bold"> Arquitectura de Internet</span>.
+			<h2 class="text-2xl text-wrap">
+				Estudiante de <span class="font-bold text-red-300"
+					>Ingeniería de Telecomunicaciones</span
+				> con un gran interés en el ámbito tecnológico. Apasionado por la
+				Programación, especialmente por <span
+					class="font-bold text-python-yellow">Python</span
+				>, y por la <span class="font-bold text-python-blue">
+					Arquitectura de Internet</span
+				>.
 			</h2>
 
-			<ul></ul>
-		</section>
+			<nav class="flex gap-x-4 mt-8">
+				<SocialPill
+					href="https://www.linkedin.com/in/daniel-martin-hurtado/"
+				>
+					<LinkedIn class="size-6" />LinkedIn
+				</SocialPill>
+
+				<SocialPill href="https://github.com/eldanimh">
+					<GitHub class="size-6" />GitHub
+				</SocialPill>
+
+				<SocialPill
+					href="mailto:daniel.martin.hurtado@outlook.com?subject=Te%20contacto%20desde%20tu%20portfolio"
+				>
+					<MailLogo class="size-6" />daniel.martin.hurtado@outlook.com
+				</SocialPill>
+			</nav>
+		</SectionContainer>
+
+		<SectionContainer class="pb-24">
+			<h2 class="text-2xl font-semibold mb-6 flex gap-x-2 items-center">
+				<Maletin class="size-7"/> 
+				Experiencia Laboral
+			</h2>
+			<Experience />
+		</SectionContainer>
 	</main>
 </Layout>
