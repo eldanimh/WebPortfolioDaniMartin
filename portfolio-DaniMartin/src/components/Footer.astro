@@ -1,6 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import AnimojiDani from "../assets/AnimojiDani.png"
+
+const startYear = 2026;
+const year = new Date().getFullYear();
+const years = year > startYear ? `${startYear} - ${year}` : `${year}`;
 ---
 
 
@@ -30,7 +34,7 @@ import AnimojiDani from "../assets/AnimojiDani.png"
             </ul>
         </div>
         <hr class="my-6 border-default sm:mx-auto lg:my-8" />
-        <span class="block text-sm text-body sm:text-center">© 2023 <a href="/" class="hover:underline">Daniel Martín Hurtado</a>.</span>
+        <span class="block text-sm text-body sm:text-center">© {years} <a href="/" class="hover:underline">Daniel Martín Hurtado</a></span>
     </div>
 </footer>
 

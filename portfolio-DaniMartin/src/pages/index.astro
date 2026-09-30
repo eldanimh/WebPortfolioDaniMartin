@@ -8,11 +8,12 @@ import SocialPill from "../components/SocialPill.astro";
 import GitHub from "../icons/GitHub.astro";
 import MailLogo from "../icons/MailLogo.astro";
 import Experience from "../components/Experience.astro";
-import SectionContainer from "../components/SectionContainer.astro"
+import SectionContainer from "../components/SectionContainer.astro";
 import Maletin from "../icons/maletin.astro";
 import CodeIcon from "../icons/CodeIcon.astro";
-import Projects from "../components/Projects.astro"
+import Projects from "../components/Projects.astro";
 import CurriculumIcon from "../icons/Curriculum-icon.astro";
+import AboutMeIcon from "../icons/AboutMe-icon.astro";
 ---
 
 <Layout
@@ -21,7 +22,7 @@ import CurriculumIcon from "../icons/Curriculum-icon.astro";
 	description="Estudiante de Ingeniería de Telecomunicaciones con un gran interés en el ámbito tecnológico. Apasionado por la Programación, especialmente por Python, y por la Arquitectura de Internet."
 >
 	<main class="px-4">
-		<SectionContainer  class="py-44 pb-32">
+		<SectionContainer class="py-44 pb-32">
 			<Image
 				class="rounded-full w-32 h-32 mb-4"
 				src={fotoPerfil}
@@ -35,7 +36,6 @@ import CurriculumIcon from "../icons/Curriculum-icon.astro";
 					href="https://www.linkedin.com/in/daniel-martin-hurtado/"
 					target="_blank"
 					rel="noopener"
-
 				>
 					<Badge>#OpenToWork</Badge>
 				</a>
@@ -65,30 +65,32 @@ import CurriculumIcon from "../icons/Curriculum-icon.astro";
 				<SocialPill
 					href="mailto:daniel.martin.hurtado@outlook.com?subject=Te%20contacto%20desde%20tu%20portfolio"
 				>
-					<MailLogo class="size-4 md:size-6" />daniel.martin.hurtado@outlook.com
+					<MailLogo
+						class="size-4 md:size-6"
+					/>daniel.martin.hurtado@outlook.com
 				</SocialPill>
 
-				<SocialPill href="">
-					<CurriculumIcon class="size-4 md:size-6" /> Descarga mí CV
-
+				<SocialPill
+					href="/CVDanielMartinHurtado.pdf"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<CurriculumIcon class="size-4 md:size-6" /> Descarga mi CV
 				</SocialPill>
 			</nav>
 		</SectionContainer>
 
-		
-
 		<SectionContainer id="projects" class="pb-24">
 			<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
-				<CodeIcon class="size-7"/> 
+				<CodeIcon class="size-7" />
 				Proyectos
 			</h2>
 			<Projects />
 		</SectionContainer>
 
-
 		<SectionContainer id="experience" class="pb-24">
 			<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
-				<Maletin class="size-7"/> 
+				<Maletin class="size-7" />
 				Experiencia Laboral
 			</h2>
 			<Experience />
@@ -96,8 +98,37 @@ import CurriculumIcon from "../icons/Curriculum-icon.astro";
 
 		<SectionContainer id="about" class="pb-24">
 			<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+				<AboutMeIcon class="size-7" />
 				Sobre mí
 			</h2>
+			<div class="max-w-2xl space-y-6 text-lg leading-relaxed text-pretty">
+				<p>Hola,</p>
+
+				<p>
+					Soy Daniel Martín Hurtado, estudiante del último año del
+					grado de <strong>Ingeniería de Telecomunicaciones</strong>, con especialidad
+					en <strong>Audio y Multimedia</strong>.
+				</p>
+
+				<p>
+					Gran apasionado del sector de las <strong>redes</strong> y la <strong>telemática</strong>,
+					me encanta saber por qué funcionan las cosas y qué hay detrás
+					de ellas. He trabajado con programas como <strong>NetGUI</strong>,
+					aprendiendo a gestionar redes desde el terminal. Mi segunda
+					gran pasión es <strong>Python</strong>, me encanta ese amor y odio de
+					programar hasta encontrar una solución. Me encantaría
+					combinar ambas pasiones, sería increíble ver todo lo que
+					puede salir de ahí.
+				</p>
+
+				<p>
+					Deseo aprender mucho más y dar lo mejor de mí para aprender.
+				</p>
+
+				<p>Atentamente,</p>
+
+				<p class="mt-12">Daniel Martín Hurtado</p>
+			</div>
 		</SectionContainer>
 	</main>
 </Layout>
