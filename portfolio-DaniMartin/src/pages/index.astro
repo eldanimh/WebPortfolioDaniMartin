@@ -10,14 +10,18 @@ import MailLogo from "../icons/MailLogo.astro";
 import Experience from "../components/Experience.astro";
 import SectionContainer from "../components/SectionContainer.astro"
 import Maletin from "../icons/maletin.astro";
+import CodeIcon from "../icons/CodeIcon.astro";
+import Projects from "../components/Projects.astro"
+import CurriculumIcon from "../icons/Curriculum-icon.astro";
 ---
 
 <Layout
+	id="top"
 	title="Daniel Martín Hurtado | Portfolio"
 	description="Estudiante de Ingeniería de Telecomunicaciones con un gran interés en el ámbito tecnológico. Apasionado por la Programación, especialmente por Python, y por la Arquitectura de Internet."
 >
-	<main>
-		<SectionContainer class="py-44 pb-24">
+	<main class="px-4">
+		<SectionContainer  class="py-44 pb-32">
 			<Image
 				class="rounded-full w-32 h-32 mb-4"
 				src={fotoPerfil}
@@ -31,11 +35,12 @@ import Maletin from "../icons/maletin.astro";
 					href="https://www.linkedin.com/in/daniel-martin-hurtado/"
 					target="_blank"
 					rel="noopener"
+
 				>
 					<Badge>#OpenToWork</Badge>
 				</a>
 			</div>
-			<h2 class="text-2xl text-wrap">
+			<h2 class="text-xl lg:text-2xl text-wrap max-w-175">
 				Estudiante de <span class="font-bold text-red-300"
 					>Ingeniería de Telecomunicaciones</span
 				> con un gran interés en el ámbito tecnológico. Apasionado por la
@@ -46,31 +51,53 @@ import Maletin from "../icons/maletin.astro";
 				>.
 			</h2>
 
-			<nav class="flex gap-x-4 mt-8">
+			<nav class="flex gap-4 mt-8 flex-wrap">
 				<SocialPill
 					href="https://www.linkedin.com/in/daniel-martin-hurtado/"
 				>
-					<LinkedIn class="size-6" />LinkedIn
+					<LinkedIn class="size-4 md:size-6" />LinkedIn
 				</SocialPill>
 
 				<SocialPill href="https://github.com/eldanimh">
-					<GitHub class="size-6" />GitHub
+					<GitHub class="size-4 md:size-6" />GitHub
 				</SocialPill>
 
 				<SocialPill
 					href="mailto:daniel.martin.hurtado@outlook.com?subject=Te%20contacto%20desde%20tu%20portfolio"
 				>
-					<MailLogo class="size-6" />daniel.martin.hurtado@outlook.com
+					<MailLogo class="size-4 md:size-6" />daniel.martin.hurtado@outlook.com
+				</SocialPill>
+
+				<SocialPill href="">
+					<CurriculumIcon class="size-4 md:size-6" /> Descarga mí CV
+
 				</SocialPill>
 			</nav>
 		</SectionContainer>
 
-		<SectionContainer class="pb-24">
-			<h2 class="text-2xl font-semibold mb-6 flex gap-x-2 items-center">
+		
+
+		<SectionContainer id="projects" class="pb-24">
+			<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+				<CodeIcon class="size-7"/> 
+				Proyectos
+			</h2>
+			<Projects />
+		</SectionContainer>
+
+
+		<SectionContainer id="experience" class="pb-24">
+			<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
 				<Maletin class="size-7"/> 
 				Experiencia Laboral
 			</h2>
 			<Experience />
+		</SectionContainer>
+
+		<SectionContainer id="about" class="pb-24">
+			<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+				Sobre mí
+			</h2>
 		</SectionContainer>
 	</main>
 </Layout>

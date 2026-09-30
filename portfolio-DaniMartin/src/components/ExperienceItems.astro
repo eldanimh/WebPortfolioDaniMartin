@@ -35,20 +35,20 @@ const { title, description, link, date, current } = Astro.props;
 </div>
 <div class="mt-3 sm:pe-8">
     <time
-        class="bg-neutral-secondary-medium border border-default-medium text-heading text-xs font-medium px-1.5 py-0.5 rounded"
+        class="bg-neutral-secondary-medium border border-default-medium text-heading text-xs font-medium px-1.5 py-0.5 rounded text-pretty"
         >{date}
     </time>
     {
         current && (
-            <span class="ms-2 bg-brand-softer border border-brand-subtle text-fg-brand-strong text-xs font-medium px-1.5 py-0.5 rounded">
-                Actual
+            <span class="ms-2 bg-brand-softer border border-brand-subtle text-fg-brand-strong text-xs font-medium px-1.5 py-0.5 rounded text-pretty">
+                Actualmente...
             </span>
         )
     }
-    <h3 class="text-lg font-semibold text-heading my-2">
+    <h3 class="text-lg font-semibold text-heading my-2 text-pretty">
         {title}
     </h3>
-    <ul class="text-body mb-4 list-disc ps-5 space-y-1">
+    <ul class="text-body mb-4 list-disc ps-5 space-y-1 text-pretty">
         {description.map((item) => <li>{item}</li>)}
     </ul>
     {
@@ -57,7 +57,7 @@ const { title, description, link, date, current } = Astro.props;
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-3 py-2 focus:outline-none"
+                class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-3 py-2 focus:outline-none text-pretty"
             >
                 Web Chincha Internacional
             </a>

@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+import PortfolioImg from "../assets/PortFolioCreatorIMG.png";
+import IconHTML from "../icons/HTML-icon.astro";
+import IconCSS from "../icons/CSS-icon.astro";
+import IconPython from "../icons/Python-icon.astro";
+import IconDjango from "../icons/Django-icon.astro";
+
+const TAGS = {
+    HTML: {
+        name: "HTML",
+        class: "bg-[#E34F26]/15 border border-[#E34F26]/40 text-[#F3855F]",
+        icon: IconHTML,
+    },
+    CSS: {
+        name: "CSS",
+        class: "bg-[#1572B6]/15 border border-[#1572B6]/40 text-[#5AB1F0]",
+        icon: IconCSS,
+    },
+    PYTHON: {
+        name: "Python",
+        class: "bg-python-blue/20 border border-python-yellow/40 text-python-yellow",
+        icon: IconPython,
+    },
+    DJANGO: {
+        name: "Django",
+        class: "bg-[#44B78B]/15 border border-[#44B78B]/40 text-[#44B78B]",
+        icon: IconDjango,
+    },
+};
+
+const PROJECTS = [
+    {
+        title: "🚀 Portfolio Creator",
+        description:
+            "Tu información profesional suele estar dispersa: código en GitHub, proyectos en el GitLab de tu universidad o empresa, artículos en bases de datos científicas. Portfolio Creator la junta en un solo sitio, te deja elegir qué mostrar y genera tu CV listo para descargar en PDF o HTML, con resúmenes redactados por IA.",
+        link: "https://github.com/eldanimh/PortfolioCreator",
+        github: "https://github.com/eldanimh/PortfolioCreator",
+        image: PortfolioImg,
+        tags: [TAGS.HTML, TAGS.CSS, TAGS.PYTHON, TAGS.DJANGO],
+    },
+];
+---
+
+{
+    PROJECTS.map(({ title, description, link, github, image, tags }) => (
+        <article>
+            <h3 class="text-2xl font-bold text-python-yellow mb-2">{title}</h3>
+            <p class="text-lg mb-4 text-pretty">{description}</p>
+            <ul class="flex gap-x-2 flex-row mb-4">
+                {tags.map((tag) => (
+                    <li>
+                        <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
+                            <tag.icon class="size-4" />
+                            {tag.name}
+                        </span>
+                    </li>
+                ))}
+            </ul>
+            <Image
+                class="rounded-2xl shadow-2xl shadow-white/15"
+                src={image}
+                alt={`Captura de pantalla del proyecto ${title}`}
+            />
+        </article>
+    ))
+}
