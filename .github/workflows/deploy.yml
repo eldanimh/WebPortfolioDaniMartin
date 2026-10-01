@@ -1,0 +1,49 @@
+name: Deploy portfolio
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+
+      - uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: arn:aws:iam::685527430389:role/github-deploy-portfolio
+          aws-region: eu-north-1
+
+      - run: >
+          aws s3 sync dist/_astro s3://danimh-portfolio/_astro --delete
+          --cache-control "public,max-age=31536000,immutable"
+
+      - run: >
+          aws s3 sync dist/ s3://danimh-portfolio --delete
+          --exclude "_astro/*"
+          --cache-control "public,max-age=0,must-revalidate"
+
+      - run: aws cloudfront create-invalidation --distribution-id E73LDC41SY75J --paths "/*"

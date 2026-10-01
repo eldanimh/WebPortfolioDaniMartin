@@ -20,6 +20,9 @@ importers:
       flowbite:
         specifier: ^4.0.2
         version: 4.0.2
+      sharp:
+        specifier: ^0.35.5
+        version: 0.35.5
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -1940,8 +1943,7 @@ snapshots:
 
   '@fontsource-variable/onest@5.3.1': {}
 
-  '@img/colour@1.1.0':
-    optional: true
+  '@img/colour@1.1.0': {}
 
   '@img/sharp-darwin-arm64@0.35.5':
     optionalDependencies:
@@ -2943,8 +2945,7 @@ snapshots:
 
   sax@1.6.1: {}
 
-  semver@7.8.5:
-    optional: true
+  semver@7.8.5: {}
 
   sharp@0.35.5:
     dependencies:
@@ -2977,7 +2978,6 @@ snapshots:
       '@img/sharp-win32-arm64': 0.35.5
       '@img/sharp-win32-ia32': 0.35.5
       '@img/sharp-win32-x64': 0.35.5
-    optional: true
 
   shiki@4.4.3:
     dependencies:
