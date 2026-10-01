@@ -94,6 +94,12 @@ Cada `push` a `main` ejecuta el workflow de [deploy.yml](.github/workflows/deplo
 - LinkedIn: [daniel-martin-hurtado](https://www.linkedin.com/in/daniel-martin-hurtado/)
 - GitHub: [@eldanimh](https://github.com/eldanimh)
 
+## Licencia
+
+El código de este proyecto se distribuye bajo la licencia [MIT](LICENSE).
+
+El contenido personal (textos, fotografías, logotipos y CV) **no** está cubierto por esta licencia y no se puede reutilizar sin mi permiso.
+
 ---
 
 <div align="center">
