@@ -40,7 +40,8 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 	</head>
 	<body>
 		<div
-			class="fixed inset-x-0 top-0 -z-10 h-[calc(100lvh+6rem)] w-full [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"
+			class="sticky top-0 -z-10 mb-[calc(-100lvh-6rem)] h-[calc(100lvh+6rem)] w-full shrink-0 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"
+
 		>
 		</div>
 		<Header />
@@ -60,7 +61,7 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 		
 	}
 	body {
-		background: #050505;
+		background: #1b0e40;
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
