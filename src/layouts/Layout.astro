@@ -57,6 +57,7 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 	html {
 		font-family: "Onest Variable", system-ui, sans-serif;
 		scroll-behavior: smooth;
+		overscroll-behavior-y: none;
 	}
 	body {
 		background: #050505;
@@ -64,6 +65,7 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 		flex-direction: column;
 		min-height: 100vh;
 		min-height: 100dvh;
+		overscroll-behavior-y: none;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
