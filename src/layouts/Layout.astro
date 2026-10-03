@@ -40,12 +40,13 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 	</head>
 	<body>
 		<div
-			class="fixed inset-0 -z-10 overflow-hidden [background:radial-gradient(125%_100%_at_50%_0%,#000_45%,#63e_78%,#050505_100%)]"
+			class="fixed inset-0 -z-10 overflow-hidden [background:radial-gradient(125%_100%_at_50%_0%,#000_45%,#4c2bb8_80%,#050505_100%)]"
 		>
 			<div class="aurora-layer" aria-hidden="true">
 				<div class="aurora aurora-1"></div>
 				<div class="aurora aurora-2"></div>
 			</div>
+			<div class="grain" aria-hidden="true"></div>
 		</div>
 		<Header />
 		<slot />
@@ -70,7 +71,7 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 		left: -30%;
 		background: radial-gradient(
 			circle,
-			rgb(168 85 247 / 0.55),
+			rgb(168 85 247 / 0.4),
 			transparent 70%
 		);
 		animation: drift-1 14s ease-in-out infinite alternate;
@@ -81,7 +82,7 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 		right: -35%;
 		background: radial-gradient(
 			circle,
-			rgb(56 189 248 / 0.45),
+			rgb(56 189 248 / 0.3),
 			transparent 70%
 		);
 		animation: drift-2 18s ease-in-out infinite alternate;
@@ -103,6 +104,14 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 		position: absolute;
 		inset: 0;
 		mask-image: linear-gradient(to bottom, #000 60%, transparent 90%);
+	}
+
+	.grain {
+		position: absolute;
+		inset: 0;
+		opacity: 0.18;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+		mask-image: linear-gradient(to bottom, #000 70%, transparent 95%);
 	}
 
 	html {
