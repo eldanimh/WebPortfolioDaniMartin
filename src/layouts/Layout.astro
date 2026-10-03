@@ -41,12 +41,21 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 	<body>
 		<div
 			class="sticky top-0 -z-10 mb-[calc(-100lvh-6rem)] h-[calc(100lvh+6rem)] w-full shrink-0 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"
-
 		>
 		</div>
 		<Header />
 		<slot />
 		<Footer />
+		<script>
+			// Safari muestra el color del body en el rebote: negro arriba, morado abajo
+			const update = () => {
+				const max = document.documentElement.scrollHeight - window.innerHeight;
+				document.body.style.backgroundColor =
+					window.scrollY > max / 2 ? "#3d1f90" : "";
+			};
+			update();
+			window.addEventListener("scroll", update, { passive: true });
+		</script>
 	</body>
 </html>
 
@@ -61,7 +70,7 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 		
 	}
 	body {
-		background: #1b0e40;
+		background: #050505;
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
