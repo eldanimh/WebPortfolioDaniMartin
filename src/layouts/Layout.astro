@@ -40,8 +40,12 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 	</head>
 	<body>
 		<div
-			class="fixed inset-0 -z-10 [background:radial-gradient(125%_100%_at_50%_0%,#000_45%,#63e_78%,#050505_100%)]"
+			class="fixed inset-0 -z-10 overflow-hidden [background:radial-gradient(125%_100%_at_50%_0%,#000_45%,#63e_78%,#050505_100%)]"
 		>
+			<div class="aurora-layer" aria-hidden="true">
+				<div class="aurora aurora-1"></div>
+				<div class="aurora aurora-2"></div>
+			</div>
 		</div>
 		<Header />
 		<slot />
@@ -53,11 +57,57 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 	:root {
 		color-scheme: dark;
 	}
+	.aurora {
+		position: absolute;
+		width: 60vmax;
+		height: 60vmax;
+		border-radius: 50%;
+		will-change: transform;
+	}
+
+	.aurora-1 {
+		top: 25%;
+		left: -20%;
+		background: radial-gradient(
+			circle,
+			rgb(102 51 238 / 0.35),
+			transparent 70%
+		);
+		animation: drift-1 24s ease-in-out infinite alternate;
+	}
+
+	.aurora-2 {
+		top: 45%;
+		right: -25%;
+		background: radial-gradient(
+			circle,
+			rgb(55 118 171 / 0.3),
+			transparent 70%
+		);
+		animation: drift-2 30s ease-in-out infinite alternate;
+	}
+
+	@keyframes drift-1 {
+		to {
+			transform: translate(35vw, 8vh) scale(1.2);
+		}
+	}
+
+	@keyframes drift-2 {
+		to {
+			transform: translate(-30vw, -12vh) scale(0.9);
+		}
+	}
+
+	.aurora-layer {
+		position: absolute;
+		inset: 0;
+		mask-image: linear-gradient(to bottom, #000 60%, transparent 90%);
+	}
 
 	html {
 		font-family: "Onest Variable", system-ui, sans-serif;
 		scroll-behavior: smooth;
-		
 	}
 	body {
 		background: #050505;
@@ -65,12 +115,15 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 		flex-direction: column;
 		min-height: 100vh;
 		min-height: 100dvh;
-		
 	}
 
 	@media (prefers-reduced-motion: reduce) {
 		html {
 			scroll-behavior: auto;
+		}
+		
+		.aurora {
+			animation: none;
 		}
 	}
 </style>
