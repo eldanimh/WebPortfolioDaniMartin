@@ -8,33 +8,34 @@ const years = year > startYear ? `${startYear} - ${year}` : `${year}`;
 ---
 
 
-<footer class="bg-neutral-primary-soft rounded-base shadow-xs border border-default m-4 w-full xl:w-280 mx-auto">
+<footer class="bg-neutral-primary-soft rounded-base shadow-xs border border-default mx-4 mb-4 xl:mx-auto xl:w-280">
     <div class="w-full max-w-7xl mx-auto p-4 md:py-8">
         <div class="sm:flex sm:items-center sm:justify-between">
-            <a href="#top" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                <Image src={AnimojiDani}  class="size-24 -translate-y-2" alt="Memoji de Daniel Coding" />
-                <span class="text-heading self-center text-2xl font-semibold whitespace-nowrap">Daniel Martín Hurtado</span>
-            </a>
-            <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-body sm:mb-0">
+            <a href="#top" class="flex items-center justify-center sm:justify-start gap-3 mb-4 sm:mb-0">
+                <Image src={AnimojiDani} class="size-24 -translate-y-2" alt="" />
+                <span class="text-heading text-2xl font-semibold text-balance">Daniel Martín Hurtado</span>
+            </a>            
+            <ul class="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 md:gap-x-6 mb-6 text-sm font-medium text-body sm:mb-0">
+
                 <li>
-                    <a href="#top" class="hover:underline me-4 md:me-6">Inicio</a>
+                    <a href="#top" class="hover:text-white transition-colors">Inicio</a>
                 </li>
                 <li>
-                    <a href="#projects" class="hover:underline me-4 md:me-6">Proyectos</a>
+                    <a href="#projects" class="hover:text-white transition-colors">Proyectos</a>
                 </li>
                 <li>
-                    <a href="#experience" class="hover:underline me-4 md:me-6">Experiencia</a>
+                    <a href="#experience" class="hover:text-white transition-colors">Experiencia</a>
                 </li>
                 <li>
-                    <a href="#about" class="hover:underline me-4 md:me-6">Sobre mí</a>
+                    <a href="#about" class="hover:text-white transition-colors">Sobre mí</a>
                 </li>
                 <li>
-                    <a href="mailto:dani@danimh.dev?subject=Te%20contacto%20desde%20tu%20portfolio" class="hover:underline">Contacto</a>
+                    <a href="mailto:dani@danimh.dev?subject=Te%20contacto%20desde%20tu%20portfolio" class="hover:text-white transition-colors">Contacto</a>
                 </li>
             </ul>
         </div>
         <hr class="my-6 border-default sm:mx-auto lg:my-8" />
-        <span class="block text-sm text-body sm:text-center">© {years} <a href="#top" class="hover:underline">Daniel Martín Hurtado</a></span>
+        <span class="hover:text-white transition-colors block text-sm text-body text-center"><a href="#top" >© {years} Daniel Martín Hurtado</a></span>
     </div>
 </footer>
 

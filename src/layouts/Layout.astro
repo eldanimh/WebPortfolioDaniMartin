@@ -20,7 +20,7 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 	<head>
 		<meta charset="utf-8" />
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<link rel="canonical" href={canonicalURL} />
@@ -29,7 +29,10 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:image" content={ogImage} />
-		<meta property="og:image:alt" content="Daniel Martín Hurtado, portfolio" />
+		<meta
+			property="og:image:alt"
+			content="Daniel Martín Hurtado, portfolio"
+		/>
 		<meta property="og:locale" content="es_ES" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="generator" content={Astro.generator} />
@@ -60,7 +63,7 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
-		
+		min-height: 100dvh;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
