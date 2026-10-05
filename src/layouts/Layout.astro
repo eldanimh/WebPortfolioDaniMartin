@@ -49,6 +49,7 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 			<div class="top-glow" aria-hidden="true"></div>
 			<div class="grain" aria-hidden="true"></div>
 		</div>
+		<div class="status-tint" aria-hidden="true"></div>
 		<Header />
 		<slot />
 		<Footer />
@@ -127,6 +128,7 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 		min-height: 100dvh;
 	}
 
+	.status-tint,
 	.top-glow {
 		display: none;
 		position: absolute;
@@ -141,8 +143,20 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 			padding-top: env(safe-area-inset-top);
 			padding-left: env(safe-area-inset-left);
 			padding-right: env(safe-area-inset-right);
-			/* Safari tiñe la barra de estado con este color */
+		}
+
+		/* Safari tiñe la barra de estado con el color de un elemento fijo pegado arriba.
+		   Así la barra de arriba es azul y la de abajo sigue usando el fondo del body */
+		.status-tint {
+			display: block;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 50;
+			height: max(env(safe-area-inset-top), 8px);
 			background-color: #071a2b;
+			pointer-events: none;
 		}
 
 		/* Brillo azul que arranca del color de la barra para que no haya corte */
