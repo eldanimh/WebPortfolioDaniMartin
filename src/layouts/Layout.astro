@@ -46,10 +46,8 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 				<div class="aurora aurora-1"></div>
 				<div class="aurora aurora-2"></div>
 			</div>
-			<div class="top-glow" aria-hidden="true"></div>
 			<div class="grain" aria-hidden="true"></div>
 		</div>
-		<div class="status-tint" aria-hidden="true"></div>
 		<Header />
 		<slot />
 		<Footer />
@@ -128,14 +126,6 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 		min-height: 100dvh;
 	}
 
-	.status-tint,
-	.top-glow {
-		display: none;
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-	}
-
 	/* Solo móvil: el fondo se extiende bajo la barra de estado (hora, batería...)
 	   y el contenido respeta las zonas seguras del notch/Dynamic Island */
 	@media (max-width: 768px) {
@@ -143,36 +133,6 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 			padding-top: env(safe-area-inset-top);
 			padding-left: env(safe-area-inset-left);
 			padding-right: env(safe-area-inset-right);
-		}
-
-		/* Safari tiñe la barra de estado (arriba) con el fondo del body */
-		body {
-			background-color: #071a2b;
-		}
-
-		/* Safari usaría ese mismo azul para la barra de abajo; un elemento fijo pegado
-		   abajo hace que coja este color oscuro en su lugar */
-		.status-tint {
-			display: block;
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			z-index: 50;
-			height: max(env(safe-area-inset-bottom), 8px);
-			background-color: #050505;
-			pointer-events: none;
-		}
-
-		/* Brillo azul que arranca del color de la barra para que no haya corte */
-		.top-glow {
-			display: block;
-			background: linear-gradient(
-				to bottom,
-				#071a2b 0%,
-				rgb(56 189 248 / 0.2) 9%,
-				transparent 40%
-			);
 		}
 	}
 
