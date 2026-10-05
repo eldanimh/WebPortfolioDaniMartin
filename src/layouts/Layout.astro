@@ -145,20 +145,22 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 			padding-right: env(safe-area-inset-right);
 		}
 
-		/* Safari tiñe la barra de estado con el color de un elemento fijo pegado arriba.
-		   Así la barra de arriba es azul y la de abajo sigue usando el fondo del body */
+		/* Safari tiñe la barra de estado (arriba) con el fondo del body */
+		body {
+			background-color: #071a2b;
+		}
+
+		/* Safari usaría ese mismo azul para la barra de abajo; un elemento fijo pegado
+		   abajo hace que coja este color oscuro en su lugar */
 		.status-tint {
 			display: block;
 			position: fixed;
-			top: 0;
+			bottom: 0;
 			left: 0;
 			right: 0;
 			z-index: 50;
-			height: max(env(safe-area-inset-top), 8px);
-			/* Translúcida y con desenfoque: se ve el contenido pasar por debajo al hacer scroll */
-			background-color: rgb(7 26 43 / 0.6);
-			-webkit-backdrop-filter: blur(12px);
-			backdrop-filter: blur(12px);
+			height: max(env(safe-area-inset-bottom), 8px);
+			background-color: #050505;
 			pointer-events: none;
 		}
 
