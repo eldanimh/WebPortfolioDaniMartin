@@ -56,22 +56,30 @@ Es una web estática, rápida y siempre en **modo oscuro**, disponible en **espa
 
 ```text
 /
-├── .github/workflows/   # Despliegue automático a AWS
-├── public/              # CV (es/en), favicon, imagen Open Graph y robots.txt
+├── .github/workflows/          # Despliegue automático a AWS
+├── infra/                      # CloudFront Function (no forma parte de la web)
+├── public/                     # CV (es/en), favicon, imagen Open Graph y robots.txt
 ├── src/
-│   ├── assets/          # Imágenes optimizadas por Astro
-│   ├── components/      # Home, Header, Footer, Projects, Experience, SocialPill...
+│   ├── assets/                 # Imágenes optimizadas por Astro
+│   ├── components/
+│   │   ├── Home.astro          # ⭐ Toda la portada; la comparten las dos páginas
+│   │   ├── Header.astro        # Menú y selector ES | EN
+│   │   ├── Footer.astro
+│   │   ├── Projects.astro      # Datos de los proyectos en los dos idiomas
+│   │   ├── Experience.astro    # Datos de la experiencia en los dos idiomas
+│   │   ├── ExperienceItems.astro
+│   │   └── ...                 # SocialPill, SectionContainer, Badge
 │   ├── i18n/
-│   │   ├── ui.ts        # Diccionario de textos en español e inglés
-│   │   └── utils.ts     # getLangFromUrl() y useTranslations()
-│   ├── icons/           # Iconos SVG como componentes
-│   ├── layouts/         # Layout base (head, SEO, hreflang, fondo animado)
+│   │   ├── ui.ts               # Diccionario de textos en español e inglés
+│   │   └── utils.ts            # getLangFromUrl() y useTranslations()
+│   ├── icons/                  # Iconos SVG como componentes
+│   ├── layouts/                # Layout base (head, SEO, hreflang, fondo animado)
 │   ├── pages/
-│   │   ├── index.astro  # danimh.dev/     (español)
-│   │   ├── en/index.astro  # danimh.dev/en/  (inglés)
-│   │   └── 404.astro    # Página de error
-│   └── styles/          # Tailwind, Flowbite y colores propios
-└── astro.config.mjs     # Idiomas, sitemap y Tailwind
+│   │   ├── index.astro         # danimh.dev/     → <Home /> en español
+│   │   ├── en/index.astro      # danimh.dev/en/  → <Home /> en inglés
+│   │   └── 404.astro           # Página de error
+│   └── styles/                 # Tailwind, Flowbite y colores propios
+└── astro.config.mjs            # Idiomas, sitemap y Tailwind
 ```
 
 ## Idiomas
@@ -120,7 +128,9 @@ Se hace en una **CloudFront Function** (evento *Viewer Request*), antes de servi
 
 La misma función resuelve las rutas de las subcarpetas en S3: `/en/` sirve `/en/index.html`, y `/en` redirige a `/en/` con un 301.
 
-> ⚠️ La función vive en la consola de AWS, no en este repositorio. Si la cambias, hazlo en **CloudFront → Functions → `index-rewrite`** y vuelve a publicarla.
+El código está en [infra/cloudfront-function.js](infra/cloudfront-function.js). No forma parte de la web (no se publica ni lo descarga el navegador); es una copia de la función que está en AWS.
+
+> ⚠️ Cambiar este archivo no actualiza CloudFront. Si lo modificas, pega el código en **CloudFront → Functions → `index-rewrite`** y vuelve a publicarla.
 
 ## Puesta en marcha
 
