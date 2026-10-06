@@ -1,4 +1,7 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getAbsoluteLocaleUrl } from "astro:i18n";
+
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import "@fontsource-variable/onest";
@@ -13,17 +16,30 @@ interface Props {
 const { description, title } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL("/og-image.jpg", Astro.site);
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <!doctype html>
-<html lang="es" class="dark">
+<html lang={lang} class="dark">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, viewport-fit=cover"
+		/>
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<link rel="canonical" href={canonicalURL} />
+		<link rel="alternate" hreflang="es" href={getAbsoluteLocaleUrl("es")} />
+		<link rel="alternate" hreflang="en" href={getAbsoluteLocaleUrl("en")} />
+		<link
+			rel="alternate"
+			hreflang="x-default"
+			href={getAbsoluteLocaleUrl("es")}
+		/>
+
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
@@ -33,7 +49,7 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 			property="og:image:alt"
 			content="Daniel Martín Hurtado, portfolio"
 		/>
-		<meta property="og:locale" content="es_ES" />
+		<meta property="og:locale" content={t("meta.ogLocale")} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
@@ -140,7 +156,7 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 		html {
 			scroll-behavior: auto;
 		}
-		
+
 		.aurora {
 			animation: none;
 		}

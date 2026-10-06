@@ -1,38 +1,59 @@
 ---
 import ExperienceItems from "./ExperienceItems.astro";
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
 
 const EXPERIENCE = [
     {
-        date: "Diciembre 2021",
-        title: "Restaurante Chincha Internacional",
-        description: [
-            "Diseño y puesta en marcha de la web con sistema de reservas online",
-            "Posicionamiento local en Google Maps y Apple Maps",
-            "Gestión de redes sociales y campañas (Meta Ads, YouTube Ads)",
-        ],
+        date: { es: "Diciembre 2021", en: "December 2021" },
+        title: {es:"Restaurante Chincha Internacional", en: "Chincha Internacional Restaurant"},
+        description: {
+            es: [
+                "Diseño y puesta en marcha de la web con sistema de reservas online",
+                "Posicionamiento local en Google Maps y Apple Maps",
+                "Gestión de redes sociales y campañas (Meta Ads, YouTube Ads)",
+            ],
+            en: [
+                "Designed and launched the website with an online booking system",
+                "Local SEO on Google Maps and Apple Maps",
+                "Social media management and ad campaigns (Meta Ads, YouTube Ads)",
+            ],
+        },
         link: "https://www.restaurantechincha.com",
         current: true,
     },
-
     {
-        date: "2017 - 2024",
-        title: "Auditorio Salem Madrid",
-        description: [
-            "Realizador de emisiones en directo con NewTek Tricaster",
-            "Gestión de cámaras manuales y PTZ",
-        ],
+        date: { es: "2017 - 2024", en: "2017 - 2024" },
+        title: {es:"Auditorio Salem Madrid", en: "Salem Madrid Auditorium"},
+        description: {
+            es: [
+                "Realizador de emisiones en directo con NewTek Tricaster",
+                "Gestión de cámaras manuales y PTZ",
+            ],
+            en: [
+                "Live broadcast director using NewTek TriCaster",
+                "Operation of manual and PTZ cameras",
+            ],
+        },
     },
-
     {
-        date: "Septiembre 2020 - Diciembre 2021",
-        title: "Restaurante Kechua",
-        description: [
-            "Redes sociales y publicidad digital",
-            "Diseño de cartas y menús para el restaurante",
-        ],
+        date: {
+            es: "Septiembre 2020 - Diciembre 2021",
+            en: "September 2020 - December 2021",
+        },
+        title: {es:"Restaurante Kechua", en: "Kechua Restaurant"},
+        description: {
+            es: [
+                "Redes sociales y publicidad digital",
+                "Diseño de cartas y menús para el restaurante",
+            ],
+            en: [
+                "Social media and digital advertising",
+                "Designed the restaurant's menus",
+            ],
+        },
     },
-
-    
 ];
 ---
 
@@ -40,7 +61,12 @@ const EXPERIENCE = [
     {
         EXPERIENCE.map((experience) => (
             <li class="group relative mb-6 sm:mb-0 sm:flex-1">
-                <ExperienceItems {...experience} />
+                <ExperienceItems
+                    {...experience}
+                    title={experience.title[lang]}
+                    date={experience.date[lang]}
+                    description={experience.description[lang]}
+                />
             </li>
         ))
     }

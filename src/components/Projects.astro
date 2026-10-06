@@ -5,6 +5,7 @@ import IconHTML from "../icons/HTML-icon.astro";
 import IconCSS from "../icons/CSS-icon.astro";
 import IconPython from "../icons/Python-icon.astro";
 import IconDjango from "../icons/Django-icon.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const TAGS = {
     HTML: {
@@ -32,25 +33,33 @@ const TAGS = {
 const PROJECTS = [
     {
         title: "🚀 Portfolio Creator",
-        description:
-            "Tu información profesional suele estar dispersa: código en GitHub, proyectos en el GitLab de tu universidad o empresa, artículos en bases de datos científicas. Portfolio Creator la junta en un solo sitio, te deja elegir qué mostrar y genera tu CV listo para descargar en PDF o HTML, con resúmenes redactados por IA.",
+        description: {
+            es: "Tu información profesional suele estar dispersa: código en GitHub, proyectos en el GitLab de tu universidad o empresa, artículos en bases de datos científicas. Portfolio Creator la junta en un solo sitio, te deja elegir qué mostrar y genera tu CV listo para descargar en PDF o HTML, con resúmenes redactados por IA.",
+            en: "Your professional information is usually scattered: code on GitHub, projects on your university's or company's GitLab, papers in scientific databases. Portfolio Creator brings it all together in one place, lets you choose what to show, and generates a CV ready to download as PDF or HTML, with AI-written summaries.",
+        },
+
         link: "https://github.com/eldanimh/PortfolioCreator",
         github: "https://github.com/eldanimh/PortfolioCreator",
         image: PortfolioImg,
         tags: [TAGS.HTML, TAGS.CSS, TAGS.PYTHON, TAGS.DJANGO],
     },
 ];
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 {
     PROJECTS.map(({ title, description, link, github, image, tags }) => (
         <article>
             <h3 class="text-2xl font-bold text-python-yellow mb-2">{title}</h3>
-            <p class="text-lg mb-4 text-pretty">{description}</p>
+            <p class="text-lg mb-4 text-pretty">{description[lang]}</p>
             <ul class="flex flex-row flex-wrap gap-2 mb-4">
                 {tags.map((tag) => (
                     <li>
-                        <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
+                        <span
+                            class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}
+                        >
                             <tag.icon class="size-4" />
                             {tag.name}
                         </span>
@@ -60,7 +69,7 @@ const PROJECTS = [
             <Image
                 class="rounded-2xl shadow-2xl shadow-white/15"
                 src={image}
-                alt={`Captura de pantalla del proyecto ${title}`}
+                alt={`${t("projects.screenshotAlt")} ${title}`}
             />
         </article>
     ))
