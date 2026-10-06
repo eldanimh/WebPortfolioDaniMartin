@@ -54,4 +54,12 @@ const t = useTranslations(lang);
             ))
         }
     </div>
+
+    <script>
+        document.querySelectorAll<HTMLAnchorElement>("a[hreflang]").forEach((link) => {
+            link.addEventListener("click", () => {
+                document.cookie = `lang=${link.hreflang}; path=/; max-age=31536000; samesite=lax`;
+            });
+        });
+    </script>
 </header>
