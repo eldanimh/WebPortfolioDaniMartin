@@ -16,3 +16,8 @@
         to   { transform: translateY(-50%); }
     }
 }
+
+/* Comentarios del código: el gris de github-dark (#6A737D) no llega a 4.5:1 sobre #0d1117 */
+.astro-code span[style*="#6A737D" i] {
+    color: #8b949e !important;
+}
