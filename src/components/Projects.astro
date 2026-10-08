@@ -141,32 +141,6 @@ const t = useTranslations(lang);
                                 class="size-full object-cover"
                             />
                         )}
-
-                        <div class="absolute bottom-4 right-4 flex flex-wrap items-center justify-end gap-2">
-                            <a
-                                href={link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="flex items-center gap-x-2 rounded-full border border-white/10 bg-black/50 px-4 py-2 font-mono text-xs backdrop-blur hover:bg-black/70"
-                            >
-                                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20" />
-                                </svg>
-                                {link.replace(/^https?:\/\//, "").replace(/\/$/, "")}
-                            </a>
-                            {github && (
-                                <a
-                                    href={github}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="flex items-center gap-x-2 rounded-full border border-white/10 bg-black/50 px-4 py-2 font-mono text-xs backdrop-blur hover:bg-black/70"
-                                >
-                                    <GitHubIcon class="size-4" />
-                                    GitHub
-                                </a>
-                            )}
-                        </div>
                     </div>
 
                     <div class="flex flex-col border-t border-white/10">
@@ -174,7 +148,35 @@ const t = useTranslations(lang);
                             <span class="size-3 rounded-full bg-red-500"></span>
                             <span class="size-3 rounded-full bg-yellow-400"></span>
                             <span class="size-3 rounded-full bg-green-500"></span>
-                            <span class="ml-3 font-mono text-sm uppercase text-white/60">{code.file}</span>
+                            <span class="ml-3 truncate font-mono text-sm uppercase text-white/60">{code.file}</span>
+
+                            <div class="ml-auto flex shrink-0 items-center gap-2">
+                                <a
+                                    href={link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={link.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                                    class="flex items-center gap-x-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-xs hover:bg-white/10"
+                                >
+                                    <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20" />
+                                    </svg>
+                                    <span class="hidden sm:inline">{link.replace(/^https?:\/\//, "").replace(/\/$/, "")}</span>
+                                </a>
+                                {github && (
+                                    <a
+                                        href={github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="GitHub"
+                                        class="flex items-center gap-x-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-xs hover:bg-white/10"
+                                    >
+                                        <GitHubIcon class="size-4" />
+                                        <span class="hidden sm:inline">GitHub</span>
+                                    </a>
+                                )}
+                            </div>
                         </div>
 
                         <div class="relative h-56 md:h-72 overflow-hidden mask-[linear-gradient(to_bottom,transparent,black_8%,black_92%,transparent)]">
