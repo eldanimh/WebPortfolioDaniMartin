@@ -1,11 +1,18 @@
 ---
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
+import { Code } from "astro:components";
 import PortfolioImg from "../assets/PortFolioCreatorIMG.png";
 import IconHTML from "../icons/HTML-icon.astro";
 import IconCSS from "../icons/CSS-icon.astro";
 import IconPython from "../icons/Python-icon.astro";
 import IconDjango from "../icons/Django-icon.astro";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import PortfolioCreatorIcon from "../icons/PortfolioCreatorIcon.astro";
+import IconAWS from "../icons/IconAWS.astro";
+import IconDocker from "../icons/IconDocker.astro";
+import GitHubIcon from "../icons/GitHub.astro";
+import viewsSource from "../assets/code/views.py?raw";
+
 
 const TAGS = {
     HTML: {
@@ -28,20 +35,50 @@ const TAGS = {
         class: "bg-[#44B78B]/15 border border-[#44B78B]/40 text-[#44B78B]",
         icon: IconDjango,
     },
+    DOCKER: {
+        name: "Docker",
+        class: "bg-[#2496ED]/15 border border-[#2496ED]/40 text-[#6DB8F5]",
+        icon: IconDocker,
+    },
+    AWS: {
+        name: "AWS",
+        class: "bg-[#FF9900]/15 border border-[#FF9900]/40 text-[#FFB84D]",
+        icon: IconAWS,
+    },
 };
+
+// Líneas 745-835 de views.py: la "cesta" del CV (elegir qué mostrar en el CV)
+const viewsExcerpt = viewsSource.split("\n").slice(744, 835).join("\n");
+
 
 const PROJECTS = [
     {
-        title: "🚀 Portfolio Creator",
+        title: "Portfolio Creator",
         description: {
             es: "Tu información profesional suele estar dispersa: código en GitHub, proyectos en el GitLab de tu universidad o empresa, artículos en bases de datos científicas. Portfolio Creator la junta en un solo sitio, te deja elegir qué mostrar y genera tu CV listo para descargar en PDF o HTML, con resúmenes redactados por IA.",
             en: "Your professional information is usually scattered: code on GitHub, projects on your university's or company's GitLab, papers in scientific databases. Portfolio Creator brings it all together in one place, lets you choose what to show, and generates a CV ready to download as PDF or HTML, with AI-written summaries.",
         },
 
-        link: "https://github.com/eldanimh/PortfolioCreator",
+        link: "https://creator.danimh.dev/",
         github: "https://github.com/eldanimh/PortfolioCreator",
         image: PortfolioImg,
-        tags: [TAGS.HTML, TAGS.CSS, TAGS.PYTHON, TAGS.DJANGO],
+        video: "/videos/portfolio-creator-demo.mp4",
+        poster: await getImage({ src: PortfolioImg, width: 1280, format: "webp" }),
+        icon: PortfolioCreatorIcon,
+        color: "text-PortfolioCreator",
+        tags: [
+            TAGS.HTML,
+            TAGS.CSS,
+            TAGS.PYTHON,
+            TAGS.DJANGO,
+            TAGS.DOCKER,
+            TAGS.AWS,
+        ],
+        code: {
+            file: "views.py",
+            lang: "python" as const,
+            text: viewsExcerpt,
+        },
     },
 ];
 
@@ -50,27 +87,105 @@ const t = useTranslations(lang);
 ---
 
 {
-    PROJECTS.map(({ title, description, link, github, image, tags }) => (
-        <article>
-            <h3 class="text-2xl font-bold text-python-yellow mb-2">{title}</h3>
-            <p class="text-lg mb-4 text-pretty">{description[lang]}</p>
-            <ul class="flex flex-row flex-wrap gap-2 mb-4">
-                {tags.map((tag) => (
-                    <li>
-                        <span
-                            class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}
-                        >
-                            <tag.icon class="size-4" />
-                            {tag.name}
-                        </span>
-                    </li>
-                ))}
-            </ul>
-            <Image
-                class="rounded-2xl shadow-2xl shadow-white/15"
-                src={image}
-                alt={`${t("projects.screenshotAlt")} ${title}`}
-            />
-        </article>
-    ))
+    PROJECTS.map(
+        ({
+            title,
+            description,
+            link,
+            github,
+            image,
+            video,
+            poster,
+            icon: Icon,
+            color,
+            code,
+            tags,
+        }) => (
+            <article class="group">
+                <div class="mb-6">
+                    <div class="flex items-center gap-x-3 mb-2">
+                        {Icon && <Icon class="size-7 shrink-0" />}
+                        <h3 class={`text-2xl font-bold ${color}`}>{title}</h3>
+                    </div>
+                    <p class="text-lg mb-4 text-pretty">{description[lang]}</p>
+                    <ul class="flex flex-row flex-wrap gap-2 mb-4">
+                        {tags.map((tag) => (
+                            <li>
+                                <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
+                                    <tag.icon class="size-4" />
+                                    {tag.name}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div class="flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0d1117] shadow-2xl shadow-white/10">
+                    <div class="relative aspect-video bg-black">
+                        {video ? (
+                            <video
+                                class="size-full object-cover"
+                                src={video}
+                                poster={poster.src}
+                                autoplay
+                                muted
+                                loop
+                                playsinline
+                                preload="metadata"
+                                aria-label={`${t("projects.screenshotAlt")} ${title}`}
+                            />
+                        ) : (
+                            <Image
+                                src={image}
+                                alt={`${t("projects.screenshotAlt")} ${title}`}
+                                class="size-full object-cover"
+                            />
+                        )}
+
+                        <div class="absolute bottom-4 right-4 flex flex-wrap items-center justify-end gap-2">
+                            <a
+                                href={link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="flex items-center gap-x-2 rounded-full border border-white/10 bg-black/50 px-4 py-2 font-mono text-xs backdrop-blur hover:bg-black/70"
+                            >
+                                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20" />
+                                </svg>
+                                {link.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                            </a>
+                            {github && (
+                                <a
+                                    href={github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="flex items-center gap-x-2 rounded-full border border-white/10 bg-black/50 px-4 py-2 font-mono text-xs backdrop-blur hover:bg-black/70"
+                                >
+                                    <GitHubIcon class="size-4" />
+                                    GitHub
+                                </a>
+                            )}
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col border-t border-white/10">
+                        <div class="flex items-center gap-x-2 border-b border-white/10 bg-white/5 px-4 py-3">
+                            <span class="size-3 rounded-full bg-red-500"></span>
+                            <span class="size-3 rounded-full bg-yellow-400"></span>
+                            <span class="size-3 rounded-full bg-green-500"></span>
+                            <span class="ml-3 font-mono text-sm uppercase text-white/60">{code.file}</span>
+                        </div>
+
+                        <div class="relative h-56 md:h-72 overflow-hidden mask-[linear-gradient(to_bottom,transparent,black_8%,black_92%,transparent)]">
+                            <div class="absolute inset-x-0 top-0 p-3 text-xs md:p-4 md:text-sm tab-2 animate-code-scroll hover:[animation-play-state:paused] motion-reduce:animate-none [&_pre]:bg-transparent!">
+                                <Code code={code.text} lang={code.lang} theme="github-dark" wrap />
+                                <Code code={code.text} lang={code.lang} theme="github-dark" wrap />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        ),
+    )
 }

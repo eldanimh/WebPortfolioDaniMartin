@@ -7,4 +7,12 @@
 @theme {
     --color-python-yellow: #FFD43B;
     --color-python-blue: #66A8E0;
+    --color-PortfolioCreator: #FF5004;
+
+
+    --animate-code-scroll: code-scroll 40s linear infinite;
+    @keyframes code-scroll {
+        from { transform: translateY(0); }
+        to   { transform: translateY(-50%); }
+    }
 }
