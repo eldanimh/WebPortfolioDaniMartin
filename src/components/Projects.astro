@@ -62,7 +62,10 @@ const PROJECTS = [
         link: "https://creator.danimh.dev/",
         github: "https://github.com/eldanimh/PortfolioCreator",
         image: PortfolioImg,
-        video: "/videos/portfolio-creator-demo.mp4",
+        video: {
+            av1: "/videos/portfolio-creator-demo.av1.mp4",
+            mp4: "/videos/portfolio-creator-demo.mp4",
+        },
         poster: await getImage({ src: PortfolioImg, width: 1280, format: "webp" }),
         icon: PortfolioCreatorIcon,
         color: "text-PortfolioCreator",
@@ -131,7 +134,6 @@ const t = useTranslations(lang);
                         {video ? (
                             <video
                                 class="size-full object-cover"
-                                src={video}
                                 poster={poster.src}
                                 autoplay
                                 muted
@@ -139,7 +141,12 @@ const t = useTranslations(lang);
                                 playsinline
                                 preload="metadata"
                                 aria-label={`${t("projects.screenshotAlt")} ${title}`}
-                            />
+                            >
+                                {video.av1 && (
+                                    <source src={video.av1} type='video/mp4; codecs="av01.0.08M.08"' />
+                                )}
+                                <source src={video.mp4} type="video/mp4" />
+                            </video>
                         ) : (
                             <Image
                                 src={image}
