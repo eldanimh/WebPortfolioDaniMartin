@@ -164,10 +164,10 @@ ffmpeg -i master.mp4 -vf "fps=30,scale=1280:-2:flags=lanczos" -an \
 
 Con un peso parecido (~3 MB), AV1 a 1080p obtiene un VMAF de 98 frente a 91 de H.264.
 
+</details>
+
 > [!NOTE]
 > En iPhone con **modo ahorro de batería**, iOS no reproduce vídeos automáticamente: se muestra el póster con el botón de play. Es una decisión del sistema y la web la respeta.
-
-</details>
 
 ## 🌍 Idiomas
 
@@ -228,10 +228,10 @@ La misma función resuelve las rutas de las subcarpetas en S3: `/en/` sirve `/en
 
 El código está en [infra/cloudfront-function.js](infra/cloudfront-function.js). No forma parte de la web (no se publica ni lo descarga el navegador); es una copia de la función que está en AWS.
 
-> [!WARNING]
-> Cambiar este archivo no actualiza CloudFront. Si lo modificas, pega el código en **CloudFront → Functions → `index-rewrite`** y vuelve a publicarla.
-
 </details>
+
+> [!WARNING]
+> Cambiar [infra/cloudfront-function.js](infra/cloudfront-function.js) no actualiza CloudFront. Si lo modificas, pega el código en **CloudFront → Functions → `index-rewrite`** y vuelve a publicarla.
 
 ## 🚀 Puesta en marcha
 
