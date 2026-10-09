@@ -1,0 +1,3 @@
+# Código de ejemplo que se muestra en la web (no es parte del proyecto):
+# se excluye de las estadísticas de lenguajes de GitHub.
+src/assets/code/** linguist-vendored
