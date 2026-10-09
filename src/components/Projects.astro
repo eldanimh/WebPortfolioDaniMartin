@@ -204,37 +204,3 @@ const t = useTranslations(lang);
         ),
     )
 }
-
-<script>
-    // iOS bloquea el autoplay en modo ahorro de batería hasta que hay un gesto del usuario.
-    // Se intenta reproducir al cargar y, si falla, al primer gesto que iOS acepte.
-    const videos = document.querySelectorAll<HTMLVideoElement>("video[autoplay]");
-    const gestos = ["touchstart", "touchend", "pointerdown", "click", "keydown"];
-
-    const reproducir = () =>
-        Promise.all(
-            [...videos].map((video) => {
-                video.muted = true;
-                return video.paused
-                    ? video.play().then(
-                          () => true,
-                          () => false,
-                      )
-                    : true;
-            }),
-        );
-
-    const alGesto = async () => {
-        if ((await reproducir()).every(Boolean)) {
-            gestos.forEach((gesto) => document.removeEventListener(gesto, alGesto));
-        }
-    };
-
-    reproducir().then((resultados) => {
-        if (!resultados.every(Boolean)) {
-            gestos.forEach((gesto) =>
-                document.addEventListener(gesto, alGesto, { passive: true }),
-            );
-        }
-    });
-</script>
