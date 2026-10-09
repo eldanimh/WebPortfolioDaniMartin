@@ -124,13 +124,7 @@ const t = useTranslations(lang);
                 </div>
 
                 <div class="flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0d1117] shadow-2xl shadow-white/10">
-                    <a
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${title}: ${link.replace(/^https?:\/\//, "").replace(/\/$/, "")}`}
-                        class="relative block aspect-video bg-black focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white"
-                    >
+                    <div class="relative aspect-video bg-black">
                         {video ? (
                             <video
                                 class="size-full object-cover"
@@ -154,7 +148,14 @@ const t = useTranslations(lang);
                                 class="size-full object-cover"
                             />
                         )}
-                    </a>
+                        <a
+                            href={link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${title}: ${link.replace(/^https?:\/\//, "").replace(/\/$/, "")}`}
+                            class="absolute inset-0 hidden [@media(hover:hover)]:block focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white"
+                        ></a>
+                    </div>
 
                     <div class="flex flex-col border-t border-white/10">
                         <div class="flex items-center gap-x-2 border-b border-white/10 bg-white/5 px-4 py-3">
@@ -192,8 +193,16 @@ const t = useTranslations(lang);
                             </div>
                         </div>
 
-                        <div class="relative h-56 md:h-72 overflow-hidden mask-[linear-gradient(to_bottom,transparent,black_8%,black_92%,transparent)]">
-                            <div class="absolute inset-x-0 top-0 p-3 text-xs md:p-4 md:text-sm tab-2 animate-code-scroll hover:[animation-play-state:paused] motion-reduce:animate-none [&_pre]:bg-transparent!">
+                        <div class="group/code relative h-56 md:h-72 overflow-hidden mask-[linear-gradient(to_bottom,transparent,black_8%,black_92%,transparent)]">
+                            <a
+                                href={link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                tabindex="-1"
+                                aria-hidden="true"
+                                class="absolute inset-0 z-10"
+                            ></a>
+                            <div class="absolute inset-x-0 top-0 p-3 text-xs md:p-4 md:text-sm tab-2 animate-code-scroll group-hover/code:[animation-play-state:paused] motion-reduce:animate-none [&_pre]:bg-transparent!">
                                 <Code code={code.text} lang={code.lang} theme="github-dark" wrap />
                                 <Code code={code.text} lang={code.lang} theme="github-dark" wrap />
                             </div>
